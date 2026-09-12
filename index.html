@@ -58,6 +58,14 @@
         -webkit-font-smoothing: antialiased;
       }
 
+      html,
+      body {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden !important;
+        position: relative;
+      }
+
       html {
         scroll-behavior: smooth;
       }
@@ -90,14 +98,27 @@
         font-family: "Plus Jakarta Sans", sans-serif;
         color: var(--text-main);
         line-height: 1.6;
-        overflow-x: hidden;
       }
 
       /* Standard Utilities */
       .container {
+        width: 100%;
         max-width: var(--max-width);
         margin: 0 auto;
         padding: 0 24px;
+        box-sizing: border-box;
+      }
+
+      img,
+      svg,
+      video,
+      canvas,
+      iframe,
+      input,
+      select,
+      textarea,
+      button {
+        max-width: 100%;
       }
 
       .tm-symbol {
@@ -525,6 +546,15 @@
         color: var(--text-muted);
       }
 
+      .flagship-arch-box {
+        background: rgba(7, 9, 14, 0.6);
+        padding: 30px;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-cyan);
+        box-sizing: border-box;
+        max-width: 100%;
+      }
+
       /* FLAGSHIP PLATFORM SHOWCASE (TIKKIT™) */
       .flagship-card {
         background: linear-gradient(
@@ -765,31 +795,307 @@
         color: var(--text-muted);
       }
 
-      /* RESPONSIVE DESIGN */
-      @media (max-width: 992px) {
-        .hero-grid,
-        .flagship-grid {
-          grid-template-columns: 1fr;
+      /* RESPONSIVE DESIGN (IPADS, TABLETS & MOBILE PHONES) */
+      @media (max-width: 1024px) {
+        .container {
+          padding: 0 20px;
+        }
+
+        .hero-section {
+          padding-top: 130px;
+          padding-bottom: 70px;
+        }
+
+        .hero-grid {
+          gap: 36px;
         }
 
         .hero-heading {
-          font-size: 2.5rem;
+          font-size: 2.7rem;
+        }
+
+        .flagship-card {
+          padding: 36px;
+        }
+
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+
+        .contact-card {
+          padding: 36px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-content {
+          height: 68px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero-section {
+          padding-top: 110px;
+          padding-bottom: 50px;
+        }
+
+        .hero-grid,
+        .flagship-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .hero-heading {
+          font-size: 2.2rem;
+        }
+
+        .hero-desc {
+          font-size: 1rem;
+          margin-bottom: 24px;
+        }
+
+        .hero-stats {
+          gap: 20px;
+          margin-top: 30px;
+          padding-top: 20px;
+        }
+
+        .stat-val {
+          font-size: 1.35rem;
+        }
+
+        .stat-label {
+          font-size: 0.7rem;
         }
 
         .services-grid {
           grid-template-columns: 1fr;
         }
 
+        .section-padding {
+          padding: 60px 0;
+        }
+
+        .section-header {
+          margin-bottom: 40px;
+        }
+
+        .section-title {
+          font-size: 1.85rem;
+        }
+
+        .flagship-card {
+          padding: 28px 20px;
+        }
+
+        .flagship-title {
+          font-size: 1.6rem;
+        }
+
         .form-grid {
           grid-template-columns: 1fr;
+          gap: 16px;
         }
 
         .form-group.full {
           grid-column: span 1;
         }
 
-        .nav-links {
-          display: none;
+        /* Enforce 16px font-size to prevent iOS Safari auto-zoom on input focus */
+        .form-input,
+        .form-select,
+        .form-textarea {
+          font-size: 16px;
+          padding: 12px 14px;
+        }
+
+        .contact-card {
+          padding: 28px 20px;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
+          gap: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        html,
+        body {
+          width: 100%;
+          max-width: 100vw;
+          overflow-x: hidden !important;
+        }
+
+        .container {
+          padding: 0 12px;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .nav-content {
+          gap: 6px;
+        }
+
+        .brand-group {
+          max-width: calc(100% - 115px);
+          min-width: 0;
+        }
+
+        .brand-title-wrap {
+          min-width: 0;
+          overflow: hidden;
+        }
+
+        .brand-title {
+          font-size: 0.88rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .brand-sub {
+          font-size: 0.52rem;
+          letter-spacing: 0.08em;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .logo-frame {
+          width: 34px;
+          height: 34px;
+          flex-shrink: 0;
+        }
+
+        .nav-content .btn-primary {
+          padding: 7px 12px !important;
+          font-size: 0.74rem !important;
+          flex-shrink: 0;
+        }
+
+        .construction-badge {
+          font-size: 0.65rem;
+          padding: 5px 8px;
+          gap: 6px;
+          white-space: normal;
+          text-align: left;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .hero-heading {
+          font-size: 1.75rem;
+          line-height: 1.18;
+          word-break: break-word;
+          overflow-wrap: break-word;
+        }
+
+        .hero-desc {
+          font-size: 0.95rem;
+          word-break: break-word;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .hero-actions .btn-primary,
+        .hero-actions .btn-secondary {
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        .hero-stats {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 6px;
+          text-align: center;
+        }
+
+        .stat-val {
+          font-size: 1.1rem;
+        }
+
+        .stat-label {
+          font-size: 0.62rem;
+          word-break: break-word;
+        }
+
+        .hero-3d-card {
+          padding: 16px 12px;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .code-preview {
+          padding: 12px 10px;
+          font-size: 0.68rem;
+          white-space: pre-wrap;
+          word-break: break-all;
+          overflow-x: hidden;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .feature-highlights {
+          grid-template-columns: 1fr;
+        }
+
+        .flagship-card {
+          padding: 18px 12px;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .flagship-arch-box {
+          padding: 16px 12px !important;
+        }
+
+        .flagship-badge {
+          font-size: 0.62rem;
+          padding: 4px 8px;
+          white-space: normal;
+        }
+
+        .flagship-title {
+          font-size: 1.4rem;
+          word-break: break-word;
+        }
+
+        .flagship-feat-item {
+          font-size: 0.8rem;
+          word-break: break-word;
+        }
+
+        .service-card {
+          padding: 20px 14px;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .stack-chip {
+          padding: 6px 12px;
+          font-size: 0.74rem;
+          max-width: 100%;
+          word-break: break-word;
+        }
+
+        .contact-card {
+          padding: 20px 14px;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        .footer-copy {
+          font-size: 0.78rem;
+          word-break: break-word;
         }
       }
     </style>
@@ -1084,14 +1390,7 @@
               </a>
             </div>
 
-            <div
-              style="
-                background: rgba(7, 9, 14, 0.6);
-                padding: 30px;
-                border-radius: var(--radius-md);
-                border: 1px solid var(--border-cyan);
-              "
-            >
+            <div class="flagship-arch-box">
               <div
                 style="
                   font-family: &quot;JetBrains Mono&quot;, monospace;
