@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KBL Designers™ | Next-Gen Web Architecture & Development</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       KBL DESIGNERS™ LANDING PAGE DESIGN SYSTEM
+       ========================================================================== */
+    :root {
+      --bg-dark: #07090e;
+      --bg-surface: #0d1421;
+      --bg-card: rgba(13, 20, 33, 0.75);
+      --bg-card-hover: rgba(18, 28, 45, 0.85);
+      
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-cyan: rgba(56, 189, 248, 0.25);
+      --border-cyan-bright: rgba(56, 189, 248, 0.75);
+      
+      --accent-cyan: #38bdf8;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --glow-gradient: linear-gradient(135deg, #38bdf8 0%, #3b82f6 50%, #8b5cf6 100%);
+      --glow-cyan: rgba(56, 189, 248, 0.35);
+      --glow-purple: rgba(139, 92, 246, 0.35);
+      
+      --max-width: 1200px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 65%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Standard Utilities */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .tm-symbol {
+      font-size: 0.65em;
+      vertical-align: super;
+      font-weight: 600;
+      line-height: 0;
+    }
+
+    .highlight-text {
+      background: var(--glow-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--glow-gradient);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 13px 28px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.35);
+      transition: all 0.25 ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(56, 189, 248, 0.5);
+      filter: brightness(1.1);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 13px 28px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      border: 1px solid var(--border-cyan);
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    /* Navigation Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(7, 9, 14, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all 0.3s ease;
+    }
+
+    .nav-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .logo-frame {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      padding: 2.5px;
+      background: var(--glow-gradient);
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.4);
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .logo-frame:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 22px rgba(56, 189, 248, 0.6);
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      background-color: #0f172a;
+      display: block;
+    }
+
+    .logo-fallback {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      background: #0f172a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.25rem;
+    }
+
+    .brand-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-cyan);
+    }
+
+    /* Construction Banner Badge */
+    .construction-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-amber);
+      margin-bottom: 24px;
+    }
+
+    .pulse-amber {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-amber);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-amber);
+      animation: pulse-amber-anim 2s infinite;
+    }
+
+    @keyframes pulse-amber-anim {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      padding-top: 160px;
+      padding-bottom: 90px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-heading {
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 520px;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .stat-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    /* HERO 3D CARD SHOWCASE */
+    .hero-card-container {
+      perspective: 1000px;
+    }
+
+    .hero-3d-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease-out, border-color 0.3s ease;
+      position: relative;
+    }
+
+    .hero-3d-card:hover {
+      border-color: var(--border-cyan-bright);
+    }
+
+    .card-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .card-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent-cyan);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .code-preview {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      background: rgba(7, 9, 14, 0.8);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .code-purple { color: var(--accent-purple); }
+    .code-cyan { color: var(--accent-cyan); }
+    .code-green { color: var(--accent-emerald); }
+    .code-amber { color: var(--accent-amber); }
+
+    .feature-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .feat-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feat-icon {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+
+    .feat-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* SECTION HEADERS */
+    .section-padding {
+      padding: 90px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 60px auto;
+    }
+
+    .section-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    /* FLAGSHIP PLATFORM SHOWCASE (TIKKIT™) */
+    .flagship-card {
+      background: linear-gradient(135deg, rgba(13, 20, 33, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
+    }
+
+    .flagship-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .flagship-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid var(--border-cyan);
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 16px;
+    }
+
+    .flagship-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .flagship-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .flagship-feats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .flagship-feat-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent-emerald);
+      flex-shrink: 0;
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .service-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-cyan);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .service-icon-box {
+      width: 50px;
+      height: 50px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .service-icon {
+      width: 24px;
+      height: 24px;
+      stroke: var(--accent-cyan);
+    }
+
+    .service-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* TECH STACK CHIPS GRID */
+    .stack-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stack-chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+    }
+
+    .stack-chip:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    /* CONTACT & INQUIRY MODAL / FORM */
+    .contact-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full {
+      grid-column: span 2;
+    }
+
+    .form-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      background: rgba(7, 9, 14, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.92rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 40px 0;
+      background: rgba(7, 9, 14, 0.95);
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 992px) {
+      .hero-grid, .flagship-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-heading {
+        font-size: 2.5rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: span 1;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION HEADER -->
+  <header>
+    <!-- Hidden Logo File Uploader -->
+    <input type="file" id="navLogoInput" accept="image/*" style="display: none;" onchange="handleLogoUpload(event)">
+
+    <div class="container">
+      <div class="nav-content">
+        <div class="brand-group" onclick="document.getElementById('navLogoInput').click()" title="Click to upload/change brand logo">
+          <div class="logo-frame">
+            <img id="headerLogoImg" class="logo-img" src="logo.png" alt="KBL Designers Logo" style="display: block;">
+            <div id="headerLogoFallback" class="logo-fallback" style="display: none;">K</div>
+          </div>
+          <div class="brand-title-wrap">
+            <span class="brand-title">KBL Designers<span class="tm-symbol">™</span></span>
+            <span class="brand-sub">Web Architecture &amp; Engineering</span>
+          </div>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="#flagship" class="nav-link">Flagship Platform</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#stack" class="nav-link">Tech Stack</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <a href="#contact" class="btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
+          Get In Touch
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        
+        <!-- Left Hero Copy -->
+        <div>
+          <div class="construction-badge">
+            <span class="pulse-amber"></span>
+            Under Construction • Next-Gen Platform Launching 2026
+          </div>
+
+          <h1 class="hero-heading">
+            Architecting High-Performance <span class="highlight-text">Web Systems</span> & Enterprise Apps
+          </h1>
+
+          <p class="hero-desc">
+            We build ultra-fast, resilient web applications, Progressive Web Apps (PWAs), and zero-trust backend infrastructure for businesses that demand reliability and modern design.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              Start a Project
+            </a>
+            <a href="#flagship" class="btn-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              View Flagship App
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <div class="stat-val">100%</div>
+              <div class="stat-label">PWA Capable</div>
+            </div>
+            <div>
+              <div class="stat-val">Sub-Sec</div>
+              <div class="stat-label">API Latency</div>
+            </div>
+            <div>
+              <div class="stat-val">Zero-Trust</div>
+              <div class="stat-label">Security Architecture</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 3D Interactive Card Showcase -->
+        <div class="hero-card-container">
+          <div class="hero-3d-card" id="heroCard">
+            <div class="card-top-bar">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span class="card-pill">KBL-ENGINE-V2.6</span>
+            </div>
+
+            <div class="code-preview">
+              <div><span class="code-purple">const</span> engine = <span class="code-purple">new</span> <span class="code-cyan">KblArchitecture</span>({</div>
+              <div>&nbsp;&nbsp;framework: <span class="code-amber">'React 19 + Next.js 15'</span>,</div>
+              <div>&nbsp;&nbsp;security: <span class="code-amber">'HttpOnly Cookies + Helmet CSP'</span>,</div>
+              <div>&nbsp;&nbsp;offlineSupport: <span class="code-green">true</span>,</div>
+              <div>&nbsp;&nbsp;speedScore: <span class="code-cyan">100</span></div>
+              <div>});</div>
+              <br>
+              <div><span class="code-purple">await</span> engine.<span class="code-cyan">deployEnterpriseSystem</span>();</div>
+            </div>
+
+            <div class="feature-highlights">
+              <div class="feat-box">
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <span class="feat-title">Responsive PWA</span>
+              </div>
+              <div class="feat-box">
+                <svg class="feat-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span class="feat-title">Hardened Security</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FLAGSHIP PLATFORM SHOWCASE (TIKKIT™) -->
+  <section id="flagship" class="section-padding" style="background: rgba(13, 20, 33, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Proof of Engineering</span>
+        <h2 class="section-title">Our Flagship Creation</h2>
+        <p class="section-subtitle">A showcase of the complex full-stack engineering KBL Designers™ delivers.</p>
+      </div>
+
+      <div class="flagship-card">
+        <div class="flagship-grid">
+          <div>
+            <span class="flagship-badge">Featured Software Case Study</span>
+            <h3 class="flagship-title">Tikkit<span class="tm-symbol">™</span> Enterprise Platform</h3>
+            <p class="flagship-desc">
+              A dual-portal, real-time commission tracking and issue management system built for financial and real estate operations. Operates as a Progressive Web App with instant offline queueing, real-time polling sync, and granular user/admin role scoping.
+            </p>
+
+            <div class="flagship-feats">
+              <div class="flagship-feat-item">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>HTTP-Only Cookie & JWT Token Revocation Authentication</span>
+              </div>
+              <div class="flagship-feat-item">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Full PWA Support (Desktop & Mobile Home Screen Installation)</span>
+              </div>
+              <div class="flagship-feat-item">
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Realtime MongoDB Pipeline & Custom Excel/CSV Export Engine</span>
+              </div>
+            </div>
+
+            <a href="business-card-right-logo.html" target="_blank" class="btn-primary">
+              View Digital Engineering Card
+            </a>
+          </div>
+
+          <div style="background: rgba(7, 9, 14, 0.6); padding: 30px; border-radius: var(--radius-md); border: 1px solid var(--border-cyan);">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent-cyan); margin-bottom: 12px;">// SYSTEM ARCHITECTURE STATUS</div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Frontend Engine</span>
+                <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">React 19 + Vite</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Backend Server</span>
+                <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">Node.js + Express</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px;">
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Database</span>
+                <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">MongoDB Atlas</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Token Cache</span>
+                <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">Redis Server</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section id="services" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Engineering Capabilities</span>
+        <h2 class="section-title">What We Build For You</h2>
+        <p class="section-subtitle">End-to-end web engineering crafted for high reliability and business growth.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 class="service-title">Custom Web Apps</h3>
+          <p class="service-desc">
+            Bespoke full-stack web applications built with React 19, Next.js 15, and Node.js. Tailored to your exact business rules.
+          </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3 class="service-title">Enterprise PWAs</h3>
+          <p class="service-desc">
+            Installable desktop and mobile Progressive Web Apps that operate offline, sync seamlessly, and bypass app store friction.
+          </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card">
+          <div class="service-icon-box">
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="service-title">Security & Hardening</h3>
+          <p class="service-desc">
+            Zero-trust architecture, HTTP-Only session cookies, Helmet headers, rate-limiting, and compliance audit readiness.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK GRID -->
+  <section id="stack" class="section-padding" style="background: rgba(13, 20, 33, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Modern Ecosystem</span>
+        <h2 class="section-title">Built On Modern Technologies</h2>
+        <p class="section-subtitle">We build exclusively with proven, enterprise-grade open source standards.</p>
+      </div>
+
+      <div class="stack-grid">
+        <div class="stack-chip">MERN Stack</div>
+        <div class="stack-chip">React 19</div>
+        <div class="stack-chip">Next.js 15</div>
+        <div class="stack-chip">Node.js</div>
+        <div class="stack-chip">Express.js</div>
+        <div class="stack-chip">MongoDB Atlas</div>
+        <div class="stack-chip">Redis</div>
+        <div class="stack-chip">Progressive Web Apps (PWA)</div>
+        <div class="stack-chip">Tailwind CSS</div>
+        <div class="stack-chip">Vite</div>
+        <div class="stack-chip">JWT & HttpOnly Security</div>
+        <div class="stack-chip">REST APIs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & PROJECT INQUIRY -->
+  <section id="contact" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Start a Conversation</span>
+        <h2 class="section-title">Ready To Build Something Badass?</h2>
+        <p class="section-subtitle">Get in touch directly with Lead Engineer Shawn Kebel to discuss your web project.</p>
+      </div>
+
+      <div class="contact-card">
+        <form id="inquiryForm" onsubmit="handleInquirySubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="clientName">Your Name</label>
+              <input type="text" id="clientName" name="Name" class="form-input" placeholder="e.g. Alex Morgan" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="clientEmail">Email Address</label>
+              <input type="email" id="clientEmail" name="Email" class="form-input" placeholder="alex@company.com" required>
+            </div>
+
+            <div class="form-group full">
+              <label class="form-label" for="projectType">Project Type</label>
+              <select id="projectType" name="Project Type" class="form-select" required>
+                <option value="" disabled selected>Select a project focus...</option>
+                <option value="Custom Web Application">Custom Web Application (React / Node / MERN)</option>
+                <option value="Enterprise PWA">Enterprise Progressive Web App (PWA)</option>
+                <option value="Backend Security Audit">Backend Security Audit & Hardening</option>
+                <option value="Full Website Build">Full Company Website Redesign</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label class="form-label" for="projectDetails">Project Details & Requirements</label>
+              <textarea id="projectDetails" name="Project Details" class="form-textarea" placeholder="Tell us about your project goals, timeline, or key features..." required></textarea>
+            </div>
+
+            <div class="form-group full" style="margin-top: 10px;">
+              <button type="submit" id="submitInquiryBtn" class="btn-primary" style="width: 100%; justify-content: center;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                <span id="submitInquiryText">Send Inquiry to KBL Designers™</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div id="formSuccessMessage" style="display: none; text-align: center; padding: 20px;">
+          <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-emerald); margin-bottom: 8px;">
+            ✓ Inquiry Prepared!
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 18px;">
+            Thank you for reaching out. Your project inquiry has been formatted for <strong style="color: var(--accent-cyan);">skebel@kbldesigners.com</strong>.
+          </p>
+          <a id="directMailLink" href="mailto:skebel@kbldesigners.com" class="btn-primary" style="display: inline-flex; font-size: 0.85rem; padding: 10px 22px;">
+            Open Email Client Directly
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="brand-group" onclick="document.getElementById('navLogoInput').click()" title="Click to upload/change brand logo">
+          <div class="logo-frame" style="width: 36px; height: 36px;">
+            <img id="footerLogoImg" class="logo-img" src="logo.png" alt="KBL Designers Logo" style="display: block;">
+            <div id="footerLogoFallback" class="logo-fallback" style="font-size: 1rem; display: none;">K</div>
+          </div>
+          <span class="brand-title" style="font-size: 1rem;">KBL Designers<span class="tm-symbol">™</span></span>
+        </div>
+
+        <div class="footer-copy">
+          Tikkit<span class="tm-symbol">™</span> &copy; 2026 by <a href="https://kbldesigners.com" style="color: var(--accent-cyan); text-decoration: none; font-weight: 700;">KBL Designers<span class="tm-symbol">™</span></a>. All Rights Reserved.
+        </div>
+
+        <div style="font-size: 0.75rem; color: var(--accent-amber); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
+          Under Construction • Launching 2026
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT FOR 3D CARD TILT & FORM INTERACTION -->
+  <script>
+    // 3D Card Tilt Effect for Hero Card
+    const heroCard = document.getElementById('heroCard');
+    if (heroCard) {
+      heroCard.addEventListener('mousemove', (e) => {
+        const rect = heroCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 16;
+        const rotateY = (centerX - x) / 16;
+
+        heroCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+      });
+
+      heroCard.addEventListener('mouseleave', () => {
+        heroCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    }
+
+    // Brand Logo Sync & Upload Handler
+    const LOGO_KEY_PRIMARY = "kbl-brand-logo";
+
+    const loadBrandLogo = () => {
+      const storedLogo = localStorage.getItem(LOGO_KEY_PRIMARY);
+
+      [
+        { img: "headerLogoImg", fallback: "headerLogoFallback" },
+        { img: "footerLogoImg", fallback: "footerLogoFallback" },
+      ].forEach(({ img, fallback }) => {
+        const imgEl = document.getElementById(img);
+        const fallbackEl = document.getElementById(fallback);
+        if (!imgEl || !fallbackEl) return;
+
+        if (storedLogo) {
+          imgEl.src = storedLogo;
+        } else {
+          imgEl.src = "logo.png";
+        }
+        imgEl.style.display = "block";
+        fallbackEl.style.display = "none";
+      });
+    };
+
+    const handleLogoUpload = (event) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const dataUrl = String(e.target.result || "");
+        localStorage.setItem(LOGO_KEY_PRIMARY, dataUrl);
+        loadBrandLogo();
+      };
+      reader.readAsDataURL(file);
+    };
+
+    // Universal Form Inquiry Handler with PHP + Node Server Email Dispatch
+    const handleInquirySubmit = async (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById("clientName").value.trim();
+      const email = document.getElementById("clientEmail").value.trim();
+      const type = document.getElementById("projectType").value;
+      const details = document.getElementById("projectDetails").value.trim();
+
+      if (!name || !email || !type || !details) return;
+
+      const submitBtn = document.getElementById("submitInquiryBtn");
+      const submitText = document.getElementById("submitInquiryText");
+      if (submitText) submitText.innerText = "Sending Email...";
+      if (submitBtn) submitBtn.disabled = true;
+
+      const payload = { name, email, projectType: type, message: details };
+
+      // Endpoints: 1. HostGator PHP Mailer (send-inquiry.php) | 2. Node API (/api/inquiry)
+      const phpEndpoint = "send-inquiry.php";
+      const nodeEndpoint = window.location.origin.startsWith("http")
+        ? "/api/inquiry"
+        : "http://localhost:5000/api/inquiry";
+
+      try {
+        let response;
+        try {
+          // Attempt HostGator PHP mailer first
+          response = await fetch(phpEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+        } catch {
+          // Fallback to local Node server endpoint if PHP mailer isn't present
+          response = await fetch(nodeEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+        }
+
+        const data = await response.json();
+        if (!response.ok || data.status !== "success") {
+          throw new Error(data.message || "Email dispatch failed");
+        }
+
+        // Show success panel on server email delivery
+        const formEl = document.getElementById("inquiryForm");
+        const successEl = document.getElementById("formSuccessMessage");
+        if (formEl) formEl.style.display = "none";
+        if (successEl) {
+          successEl.innerHTML = `
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-emerald); margin-bottom: 8px;">
+              ✓ Inquiry Delivered!
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px;">
+              Thank you for reaching out, ${name}. Your project inquiry was delivered directly to <strong style="color: var(--accent-cyan);">skebel@kbldesigners.com</strong>.
+            </p>
+          `;
+          successEl.style.display = "block";
+        }
+      } catch (err) {
+        console.warn("Server email dispatch failed, launching email client fallback...", err);
+        const subject = `New Project Inquiry: ${type} - ${name}`;
+        const body = `Hi Shawn,\n\nName: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nProject Details:\n${details}\n\nSent via KBL Designers™`;
+        const mailtoUrl = `mailto:skebel@kbldesigners.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        window.location.href = mailtoUrl;
+
+        const formEl = document.getElementById("inquiryForm");
+        const successEl = document.getElementById("formSuccessMessage");
+        if (formEl) formEl.style.display = "none";
+        if (successEl) {
+          successEl.innerHTML = `
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-amber); margin-bottom: 8px;">
+              ⚡ Launching Email Client...
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 18px;">
+              To send your inquiry, hit Send in your email program or click the button below:
+            </p>
+            <a href="${mailtoUrl}" class="btn-primary" style="display: inline-flex; font-size: 0.85rem; padding: 10px 22px;">
+              Click Here to Send Email
+            </a>
+          `;
+          successEl.style.display = "block";
+        }
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitText) submitText.innerText = "Send Inquiry to KBL Designers™";
+      }
+    };
+
+    loadBrandLogo();
+  </script>
+</body>
+</html>

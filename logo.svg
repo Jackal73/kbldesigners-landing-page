@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#999999"/>
+      <stop offset="40%" stop-color="#666666"/>
+      <stop offset="100%" stop-color="#2a2a2a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Background -->
+  <rect width="512" height="512" fill="#111111"/>
+
+  <!-- Metallic Silver K -->
+  <text x="256" y="380" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="410" font-weight="900" fill="url(#metalGrad)" text-anchor="middle">K</text>
+
+  <!-- Overlay Text: kblDesigners.com -->
+  <text x="256" y="272" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="44" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5">kblDesigners.com</text>
+</svg>

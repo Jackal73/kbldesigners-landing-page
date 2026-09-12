@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KBL Designers™ - Ultra Modern Business Card</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-dark: #07090e;
+        --card-bg: rgba(13, 20, 33, 0.75);
+        --card-border: rgba(56, 189, 248, 0.25);
+        --card-border-hover: rgba(56, 189, 248, 0.8);
+
+        --accent-cyan: #38bdf8;
+        --accent-blue: #3b82f6;
+        --accent-purple: #8b5cf6;
+        --accent-emerald: #10b981;
+
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --text-dim: #64748b;
+
+        --glow-gradient: linear-gradient(
+          135deg,
+          #38bdf8 0%,
+          #3b82f6 50%,
+          #8b5cf6 100%
+        );
+
+        --card-width: 420px;
+        --card-height: 240px;
+        --card-radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        min-height: 100vh;
+        background-color: var(--bg-dark);
+        background-image:
+          radial-gradient(
+            circle at 15% 20%,
+            rgba(56, 189, 248, 0.08) 0%,
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 85% 80%,
+            rgba(139, 92, 246, 0.08) 0%,
+            transparent 45%
+          ),
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size:
+          100% 100%,
+          100% 100%,
+          32px 32px,
+          32px 32px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--text-main);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        overflow-x: hidden;
+      }
+
+      .controls {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .controls h1 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        background: var(--glow-gradient);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 6px;
+      }
+
+      .controls p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 14px;
+      }
+
+      .action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 18px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--card-border);
+        border-radius: 9999px;
+        color: var(--accent-cyan);
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+      }
+
+      .action-btn:hover {
+        background: rgba(56, 189, 248, 0.15);
+        border-color: var(--accent-cyan);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+      }
+
+      .cards-deck {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 36px;
+        justify-content: center;
+        perspective: 1200px;
+        max-width: 1000px;
+        width: 100%;
+      }
+
+      .card-wrapper {
+        position: relative;
+        width: 440px;
+        height: 250px;
+        border-radius: var(--card-radius);
+        transition:
+          transform 0.15s ease-out,
+          box-shadow 0.3s ease;
+        transform-style: preserve-3d;
+      }
+
+      .card {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: var(--card-radius);
+        border: 1px solid var(--card-border);
+        padding: 22px 26px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        box-shadow:
+          0 20px 40px -15px rgba(0, 0, 0, 0.65),
+          inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        transition: border-color 0.3s ease;
+      }
+
+      .card-wrapper:hover .card {
+        border-color: var(--card-border-hover);
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(56, 189, 248, 0.12) 0%,
+          rgba(139, 92, 246, 0.08) 25%,
+          transparent 60%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .card-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .brand-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-frame {
+        position: relative;
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        padding: 2px;
+        background: var(--glow-gradient);
+        box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35);
+        flex-shrink: 0;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .logo-frame:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+      }
+
+      .logo-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+        background-color: #0f172a;
+        display: block;
+      }
+
+      .logo-fallback {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background: #0f172a;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 1.15rem;
+      }
+
+      .tm-symbol {
+        font-size: 0.65em;
+        vertical-align: super;
+        font-weight: 600;
+        line-height: 0;
+      }
+
+      .brand-logo-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+      }
+
+      .logo-frame-lg {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        padding: 2.5px;
+        background: var(--glow-gradient);
+        box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+        flex-shrink: 0;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .logo-frame-lg:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 24px rgba(56, 189, 248, 0.6);
+      }
+
+      .logo-fallback-lg {
+        width: 100%;
+        height: 100%;
+        border-radius: 11px;
+        background: #0f172a;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 1.3rem;
+      }
+
+      .brand-name {
+        font-size: 1.1rem;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        color: var(--text-main);
+      }
+
+      .brand-tagline {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent-cyan);
+      }
+
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(16, 185, 129, 0.12);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        padding: 4px 10px;
+        border-radius: 9999px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent-emerald);
+      }
+
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        background-color: var(--accent-emerald);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--accent-emerald);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.4;
+          transform: scale(0.9);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.15);
+        }
+        100% {
+          opacity: 0.4;
+          transform: scale(0.9);
+        }
+      }
+
+      .person-details {
+        margin-top: 10px;
+        margin-bottom: 6px;
+      }
+
+      .person-name {
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: var(--text-main);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+
+      .person-title {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--accent-cyan);
+        margin-top: 3px;
+        letter-spacing: 0.02em;
+      }
+
+      .tech-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 8px;
+      }
+
+      .chip {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        padding: 2px 7px;
+        border-radius: 5px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .contact-item:hover {
+        color: var(--accent-cyan);
+      }
+
+      .contact-icon {
+        width: 14px;
+        height: 14px;
+        stroke: var(--accent-cyan);
+        flex-shrink: 0;
+      }
+
+      .card-back-layout {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+      }
+
+      .back-left {
+        max-width: 250px;
+      }
+
+      .back-headline {
+        font-size: 1.15rem;
+        font-weight: 800;
+        line-height: 1.25;
+        color: var(--text-main);
+        margin-bottom: 8px;
+      }
+
+      .highlight {
+        background: var(--glow-gradient);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .back-sub {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+        margin-bottom: 12px;
+      }
+
+      .qr-container {
+        background: #ffffff;
+        padding: 8px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .qr-container img {
+        width: 80px;
+        height: 80px;
+        display: block;
+      }
+
+      .qr-label {
+        font-size: 0.55rem;
+        font-weight: 800;
+        color: #07090e;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+
+      @page {
+        size: auto;
+        margin: 0.25in;
+      }
+
+      @media print {
+        body {
+          background: #ffffff !important;
+          padding: 0 !important;
+        }
+
+        .controls {
+          display: none !important;
+        }
+
+        .cards-deck {
+          display: block !important;
+        }
+
+        .card-wrapper {
+          page-break-after: always;
+          page-break-inside: avoid;
+          width: 3.5in !important;
+          height: 2in !important;
+          margin: 0.2in auto !important;
+          transform: none !important;
+        }
+
+        .card {
+          background: #0d1421 !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          border: 1px solid #1e293b !important;
+          padding: 12px 16px !important;
+          overflow: hidden !important;
+        }
+
+        .logo-frame {
+          width: 34px !important;
+          height: 34px !important;
+          padding: 1.5px !important;
+          border-radius: 8px !important;
+        }
+
+        .logo-frame-lg {
+          width: 38px !important;
+          height: 38px !important;
+          padding: 1.5px !important;
+          border-radius: 9px !important;
+        }
+
+        .logo-img,
+        .logo-fallback {
+          border-radius: 6px !important;
+        }
+
+        .logo-fallback {
+          font-size: 0.9rem !important;
+        }
+
+        .logo-fallback-lg {
+          border-radius: 7px !important;
+          font-size: 1rem !important;
+        }
+
+        .brand-name {
+          font-size: 0.95rem !important;
+        }
+
+        .brand-tagline {
+          font-size: 0.52rem !important;
+        }
+
+        .status-badge {
+          padding: 2px 7px !important;
+          font-size: 0.52rem !important;
+        }
+
+        .person-details {
+          margin-top: 4px !important;
+          margin-bottom: 4px !important;
+        }
+
+        .person-name {
+          font-size: 1.15rem !important;
+        }
+
+        .person-title {
+          font-size: 0.7rem !important;
+          margin-top: 1px !important;
+        }
+
+        .tech-chips {
+          gap: 3px !important;
+          margin-top: 4px !important;
+        }
+
+        .chip {
+          padding: 1px 5px !important;
+          font-size: 0.52rem !important;
+          border-radius: 4px !important;
+        }
+
+        .contact-grid {
+          padding-top: 6px !important;
+          gap: 4px !important;
+        }
+
+        .contact-item {
+          font-size: 0.65rem !important;
+          gap: 5px !important;
+        }
+
+        .contact-icon {
+          width: 12px !important;
+          height: 12px !important;
+        }
+
+        .back-left {
+          max-width: 200px !important;
+        }
+
+        .back-headline {
+          font-size: 0.95rem !important;
+          margin-bottom: 4px !important;
+        }
+
+        .back-sub {
+          font-size: 0.6rem !important;
+          line-height: 1.3 !important;
+          margin-bottom: 6px !important;
+        }
+
+        .qr-container {
+          padding: 5px !important;
+          border-radius: 8px !important;
+        }
+
+        .qr-container img {
+          width: 60px !important;
+          height: 60px !important;
+        }
+
+        .qr-label {
+          font-size: 0.48rem !important;
+          margin-top: 2px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER CONTROLS -->
+    <div class="controls">
+      <h1>KBL Designers™ Web Engineering Card</h1>
+      <p>Interactive 3D Preview • KBL Designers™ Header Logo Edition</p>
+
+      <div class="btn-group">
+        <button
+          class="action-btn"
+          onclick="document.getElementById('logoFileInput').click()"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"
+            />
+            <circle cx="12" cy="13" r="4" />
+          </svg>
+          Upload / Change Brand Logo
+        </button>
+
+        <button class="action-btn" onclick="window.print()">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"
+            />
+            <rect x="6" y="14" width="12" height="8" />
+          </svg>
+          Print / Save as PDF
+        </button>
+      </div>
+
+      <!-- Hidden logo uploader input -->
+      <input
+        type="file"
+        id="logoFileInput"
+        accept="image/*"
+        style="display: none"
+        onchange="handleLogoUpload(event)"
+      />
+    </div>
+
+    <!-- CARDS DECK (FRONT & BACK) -->
+    <div class="cards-deck">
+      <!-- ================= CARD FRONT ================= -->
+      <div class="card-wrapper" id="cardFront">
+        <div class="card">
+          <div class="card-content">
+            <!-- BRAND TOP ROW (KBL DESIGNERS LOGO) -->
+            <div class="brand-header">
+              <div class="brand-logo">
+                <div
+                  class="logo-frame"
+                  onclick="document.getElementById('logoFileInput').click()"
+                  title="Click to change KBL Designers™ logo"
+                >
+                  <img
+                    id="brandLogoImg"
+                    class="logo-img"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
+                    alt="KBL Designers Logo"
+                    style="display: none"
+                  />
+                  <div id="brandLogoFallback" class="logo-fallback">K</div>
+                </div>
+                <div>
+                  <div class="brand-name">KBL Designers<span class="tm-symbol">™</span></div>
+                  <div class="brand-tagline">
+                    Web Architecture & Engineering
+                  </div>
+                </div>
+              </div>
+              <div class="status-badge">
+                <span class="status-dot"></span>
+                Available
+              </div>
+            </div>
+
+            <!-- PERSON DETAILS (SHAWN KEBEL - CLEAN TYPOGRAPHY) -->
+            <div class="person-details">
+              <div class="person-name">Shawn Kebel</div>
+              <div class="person-title">Lead Development Engineer</div>
+
+              <div class="tech-chips">
+                <span class="chip">MERN Stack</span>
+                <span class="chip">React 19</span>
+                <span class="chip">Next.js 15</span>
+                <span class="chip">PWA</span>
+                <span class="chip">Cloud Security</span>
+              </div>
+            </div>
+
+            <!-- CONTACT BOTTOM ROW -->
+            <div class="contact-grid">
+              <a
+                href="https://kbldesigners.com"
+                target="_blank"
+                class="contact-item"
+              >
+                <svg
+                  class="contact-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path
+                    d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"
+                  />
+                </svg>
+                <span>kbldesigners.com</span>
+              </a>
+              <a href="mailto:skebel@kbldesigners.com" class="contact-item">
+                <svg
+                  class="contact-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <path d="M22 6l-10 7L2 6" />
+                </svg>
+                <span>skebel@kbldesigners.com</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= CARD BACK ================= -->
+      <div class="card-wrapper" id="cardBack">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-back-layout">
+              <div class="back-left">
+                <div class="brand-tagline" style="margin-bottom: 6px">
+                  FLAGSHIP PLATFORM
+                </div>
+                <div class="back-headline">
+                  Powered by <span class="highlight">Tikkit<span class="tm-symbol">™</span></span> Technology
+                </div>
+                <div class="back-sub">
+                  Enterprise commission workflows, PWA capabilities, and
+                  zero-trust security architecture.
+                </div>
+                <div class="brand-tagline" style="color: var(--text-dim)">
+                  © 2026 KBL Designers<span class="tm-symbol">™</span>. All Rights Reserved.
+                </div>
+              </div>
+
+              <!-- DYNAMIC QR CODE -->
+              <div class="qr-container">
+                <img
+                  src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kbldesigners.com&color=07090e"
+                  alt="Scan QR Code to visit KBL Designers™"
+                />
+                <div class="qr-label">Scan to Connect</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPT FOR BRAND LOGO STORAGE & 3D TILT EFFECT -->
+    <script>
+      const LOGO_KEY_PRIMARY = "kbl-brand-logo";
+
+      const loadBrandLogo = () => {
+        const storedLogo =
+          localStorage.getItem(LOGO_KEY_PRIMARY) || "logo.png";
+
+        [
+          { img: "brandLogoImg", fallback: "brandLogoFallback" },
+          { img: "brandLogoImg2", fallback: "brandLogoFallback2" },
+        ].forEach(({ img, fallback }) => {
+          const imgEl = document.getElementById(img);
+          const fallbackEl = document.getElementById(fallback);
+          if (!imgEl || !fallbackEl) return;
+
+          if (storedLogo) {
+            imgEl.src = storedLogo;
+            imgEl.style.display = "block";
+            fallbackEl.style.display = "none";
+          } else {
+            imgEl.style.display = "none";
+            fallbackEl.style.display = "flex";
+          }
+        });
+      };
+
+      const handleLogoUpload = (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const dataUrl = String(e.target.result || "");
+          localStorage.setItem(LOGO_KEY_PRIMARY, dataUrl);
+          loadBrandLogo();
+        };
+        reader.readAsDataURL(file);
+      };
+
+      // 3D Tilt Setup
+      const setupCardTilt = (cardId) => {
+        const card = document.getElementById(cardId);
+        if (!card) return;
+
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = (y - centerY) / 12;
+          const rotateY = (centerX - x) / 12;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+          const mouseXPercent = (x / rect.width) * 100;
+          const mouseYPercent = (y / rect.height) * 100;
+          card
+            .querySelector(".card")
+            .style.setProperty("--mouse-x", `${mouseXPercent}%`);
+          card
+            .querySelector(".card")
+            .style.setProperty("--mouse-y", `${mouseYPercent}%`);
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform =
+            "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+        });
+      };
+
+      setupCardTilt("cardFront");
+      setupCardTilt("cardBack");
+      loadBrandLogo();
+    </script>
+  </body>
+</html>
