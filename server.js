@@ -87,7 +87,9 @@ app.post("/api/inquiry", async (req, res) => {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log(`✅ Email sent successfully to ${receiver}! Message ID: ${info.messageId}`);
+    console.log(
+      `✅ Email sent successfully to ${receiver}! Message ID: ${info.messageId}`,
+    );
     return res.json({
       status: "success",
       message: `Inquiry sent successfully to ${receiver}!`,
@@ -102,5 +104,7 @@ app.post("/api/inquiry", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🌐 KBL Designers™ Landing Page Server running on http://localhost:${PORT}`);
+  console.log(
+    `🌐 KBL Designers™ Landing Page Server running on http://localhost:${PORT}`,
+  );
 });

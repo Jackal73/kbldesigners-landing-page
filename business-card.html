@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -709,7 +709,9 @@
                   <div id="brandLogoFallback" class="logo-fallback">K</div>
                 </div>
                 <div>
-                  <div class="brand-name">KBL Designers<span class="tm-symbol">™</span></div>
+                  <div class="brand-name">
+                    KBL Designers<span class="tm-symbol">™</span>
+                  </div>
                   <div class="brand-tagline">
                     Web Architecture & Engineering
                   </div>
@@ -784,14 +786,19 @@
                   FLAGSHIP PLATFORM
                 </div>
                 <div class="back-headline">
-                  Powered by <span class="highlight">Tikkit<span class="tm-symbol">™</span></span> Technology
+                  Powered by
+                  <span class="highlight"
+                    >Tikkit<span class="tm-symbol">™</span></span
+                  >
+                  Technology
                 </div>
                 <div class="back-sub">
                   Enterprise commission workflows, PWA capabilities, and
                   zero-trust security architecture.
                 </div>
                 <div class="brand-tagline" style="color: var(--text-dim)">
-                  © 2026 KBL Designers<span class="tm-symbol">™</span>. All Rights Reserved.
+                  © 2026 KBL Designers<span class="tm-symbol">™</span>. All
+                  Rights Reserved.
                 </div>
               </div>
 
@@ -814,8 +821,7 @@
       const LOGO_KEY_PRIMARY = "kbl-brand-logo";
 
       const loadBrandLogo = () => {
-        const storedLogo =
-          localStorage.getItem(LOGO_KEY_PRIMARY) || "logo.png";
+        const storedLogo = localStorage.getItem(LOGO_KEY_PRIMARY) || "logo.png";
 
         [
           { img: "brandLogoImg", fallback: "brandLogoFallback" },
