@@ -461,14 +461,19 @@
 
       .code-preview {
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         color: var(--text-muted);
         background: rgba(7, 9, 14, 0.8);
-        padding: 20px;
+        padding: 18px 20px;
         border-radius: var(--radius-md);
         border: 1px solid var(--border-subtle);
-        margin-bottom: 24px;
-        line-height: 1.6;
+        margin-bottom: 20px;
+        line-height: 1.5;
+        overflow-x: auto;
+      }
+
+      .code-spacer {
+        height: 6px;
       }
 
       .code-purple {
@@ -898,14 +903,14 @@
         }
 
         .code-preview {
-          padding: 12px;
+          padding: 12px 14px;
           margin-bottom: 12px;
-          font-size: 0.74rem;
+          font-size: 0.72rem;
           line-height: 1.4;
         }
 
-        .code-preview br {
-          display: none;
+        .code-spacer {
+          height: 4px;
         }
 
         .feature-highlights {
@@ -1074,15 +1079,17 @@
         }
 
         .code-preview {
-          padding: 10px 8px;
+          padding: 10px 10px;
           margin-bottom: 10px;
-          font-size: 0.65rem;
+          font-size: 0.6rem;
           line-height: 1.35;
-          white-space: pre-wrap;
-          word-break: break-all;
-          overflow-x: hidden;
-          max-width: 100%;
-          box-sizing: border-box;
+          white-space: pre;
+          overflow-x: auto;
+          word-break: normal;
+        }
+
+        .code-spacer {
+          height: 3px;
         }
 
         .feature-highlights {
@@ -1305,12 +1312,11 @@
                 </div>
                 <div>
                   &nbsp;&nbsp;framework:
-                  <span class="code-amber">'React 19 + Next.js 15'</span>,
+                  <span class="code-amber">'React 19 + Next 15'</span>,
                 </div>
                 <div>
                   &nbsp;&nbsp;security:
-                  <span class="code-amber">'HttpOnly Cookies + Helmet CSP'</span
-                  >,
+                  <span class="code-amber">'HttpOnly + Helmet'</span>,
                 </div>
                 <div>
                   &nbsp;&nbsp;offlineSupport:
@@ -1320,7 +1326,7 @@
                   &nbsp;&nbsp;speedScore: <span class="code-cyan">100</span>
                 </div>
                 <div>});</div>
-                <br />
+                <div class="code-spacer"></div>
                 <div>
                   <span class="code-purple">await</span> engine.<span
                     class="code-cyan"
