@@ -216,7 +216,7 @@
         background: var(--glow-gradient);
         box-shadow: 0 8px 30px rgba(56, 189, 248, 0.6);
         flex-shrink: 0;
-        cursor: pointer;
+        cursor: default;
         z-index: 10;
         transition:
           transform 0.2s ease,
@@ -583,30 +583,10 @@
   <body>
     <!-- HEADER CONTROLS -->
     <div class="controls">
-      <h1>KBL Designers™ Web Engineering Card (Right Logo Edition)</h1>
-      <p>Interactive 3D Preview • Brand Logo Stacked Under "Available" Badge</p>
+      <h1>KBL Designers™ Web Engineering Card</h1>
+      <p>Interactive 3D Preview • Ready to Share or Save</p>
 
       <div class="btn-group">
-        <button
-          class="action-btn"
-          onclick="document.getElementById('logoFileInput').click()"
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path
-              d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"
-            />
-            <circle cx="12" cy="13" r="4" />
-          </svg>
-          Upload / Change Brand Logo
-        </button>
-
         <button class="action-btn" onclick="window.print()">
           <svg
             width="14"
@@ -624,14 +604,6 @@
           Print / Save as PDF
         </button>
       </div>
-
-      <input
-        type="file"
-        id="logoFileInput"
-        accept="image/*"
-        style="display: none"
-        onchange="handleLogoUpload(event)"
-      />
     </div>
 
     <!-- CARDS DECK (FRONT & BACK) -->
@@ -655,12 +627,8 @@
               </div>
             </div>
 
-            <!-- FLOATING BIG BRAND LOGO (RIGHT SIDE - DOES NOT PUSH TEXT DOWN) -->
-            <div
-              class="logo-frame-lg"
-              onclick="document.getElementById('logoFileInput').click()"
-              title="Click to change KBL Designers logo"
-            >
+            <!-- FLOATING BRAND LOGO (RIGHT SIDE) -->
+            <div class="logo-frame-lg">
               <img
                 id="brandLogoImg"
                 class="logo-img"
@@ -787,19 +755,6 @@
         }
         imgEl.style.display = "block";
         if (fallbackEl) fallbackEl.style.display = "none";
-      };
-
-      const handleLogoUpload = (event) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const dataUrl = String(e.target.result || "");
-          localStorage.setItem(LOGO_KEY_PRIMARY, dataUrl);
-          loadBrandLogo();
-        };
-        reader.readAsDataURL(file);
       };
 
       // 3D Tilt Setup

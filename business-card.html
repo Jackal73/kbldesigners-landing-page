@@ -220,7 +220,7 @@
         background: var(--glow-gradient);
         box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35);
         flex-shrink: 0;
-        cursor: pointer;
+        cursor: default;
         transition:
           transform 0.2s ease,
           box-shadow 0.2s ease;
@@ -634,29 +634,9 @@
     <!-- HEADER CONTROLS -->
     <div class="controls">
       <h1>KBL Designers™ Web Engineering Card</h1>
-      <p>Interactive 3D Preview • KBL Designers™ Header Logo Edition</p>
+      <p>Interactive 3D Preview • Ready to Share or Save</p>
 
       <div class="btn-group">
-        <button
-          class="action-btn"
-          onclick="document.getElementById('logoFileInput').click()"
-        >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path
-              d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"
-            />
-            <circle cx="12" cy="13" r="4" />
-          </svg>
-          Upload / Change Brand Logo
-        </button>
-
         <button class="action-btn" onclick="window.print()">
           <svg
             width="14"
@@ -674,15 +654,6 @@
           Print / Save as PDF
         </button>
       </div>
-
-      <!-- Hidden logo uploader input -->
-      <input
-        type="file"
-        id="logoFileInput"
-        accept="image/*"
-        style="display: none"
-        onchange="handleLogoUpload(event)"
-      />
     </div>
 
     <!-- CARDS DECK (FRONT & BACK) -->
@@ -694,19 +665,21 @@
             <!-- BRAND TOP ROW (KBL DESIGNERS LOGO) -->
             <div class="brand-header">
               <div class="brand-logo">
-                <div
-                  class="logo-frame"
-                  onclick="document.getElementById('logoFileInput').click()"
-                  title="Click to change KBL Designers™ logo"
-                >
+                <div class="logo-frame">
                   <img
                     id="brandLogoImg"
                     class="logo-img"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
+                    src="logo.png"
                     alt="KBL Designers Logo"
-                    style="display: none"
+                    style="display: block"
                   />
-                  <div id="brandLogoFallback" class="logo-fallback">K</div>
+                  <div
+                    id="brandLogoFallback"
+                    class="logo-fallback"
+                    style="display: none"
+                  >
+                    K
+                  </div>
                 </div>
                 <div>
                   <div class="brand-name">

@@ -847,7 +847,33 @@
           padding-bottom: 50px;
         }
 
-        .hero-grid,
+        .hero-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        }
+
+        .hero-left-col {
+          display: contents;
+        }
+
+        .hero-copy-main {
+          order: 1;
+        }
+
+        .hero-card-container {
+          order: 2;
+          width: 100%;
+        }
+
+        .hero-stats {
+          order: 3;
+          width: 100%;
+          gap: 20px;
+          margin-top: 0;
+          padding-top: 24px;
+        }
+
         .flagship-grid {
           grid-template-columns: 1fr;
           gap: 32px;
@@ -933,10 +959,19 @@
         .form-grid {
           grid-template-columns: 1fr;
           gap: 16px;
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        .form-group {
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .form-group.full {
           grid-column: span 1;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         /* Enforce 16px font-size to prevent iOS Safari auto-zoom on input focus */
@@ -945,10 +980,27 @@
         .form-textarea {
           font-size: 16px;
           padding: 12px 14px;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+
+        #submitInquiryBtn {
+          width: 100% !important;
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+          padding: 12px 14px !important;
+          font-size: 0.86rem !important;
+          white-space: normal !important;
+          text-align: center !important;
         }
 
         .contact-card {
-          padding: 28px 20px;
+          padding: 24px 16px;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+          overflow: hidden;
         }
 
         .footer-content {
@@ -1081,11 +1133,17 @@
         .code-preview {
           padding: 10px 10px;
           margin-bottom: 10px;
-          font-size: 0.6rem;
-          line-height: 1.35;
-          white-space: pre;
+          font-size: 0.64rem;
+          line-height: 1.4;
+          white-space: nowrap;
           overflow-x: auto;
           word-break: normal;
+        }
+
+        .code-preview div {
+          margin: 0;
+          padding: 0;
+          line-height: 1.4;
         }
 
         .code-spacer {
@@ -1166,22 +1224,9 @@
   <body>
     <!-- NAVIGATION HEADER -->
     <header>
-      <!-- Hidden Logo File Uploader -->
-      <input
-        type="file"
-        id="navLogoInput"
-        accept="image/*"
-        style="display: none"
-        onchange="handleLogoUpload(event)"
-      />
-
       <div class="container">
         <div class="nav-content">
-          <div
-            class="brand-group"
-            onclick="document.getElementById('navLogoInput').click()"
-            title="Click to upload/change brand logo"
-          >
+          <div class="brand-group">
             <div class="logo-frame">
               <img
                 id="headerLogoImg"
@@ -1229,51 +1274,53 @@
       <div class="container">
         <div class="hero-grid">
           <!-- Left Hero Copy -->
-          <div>
-            <div class="construction-badge">
-              <span class="pulse-amber"></span>
-              Under Construction • Next-Gen Platform Launching 2026
-            </div>
+          <div class="hero-left-col">
+            <div class="hero-copy-main">
+              <div class="construction-badge">
+                <span class="pulse-amber"></span>
+                Under Construction • Next-Gen Platform Launching 2026
+              </div>
 
-            <h1 class="hero-heading">
-              Architecting High-Performance
-              <span class="highlight-text">Web Systems</span> & Enterprise Apps
-            </h1>
+              <h1 class="hero-heading">
+                Architecting High-Performance
+                <span class="highlight-text">Web Systems</span> & Enterprise
+                Apps
+              </h1>
 
-            <p class="hero-desc">
-              We build ultra-fast, resilient web applications, Progressive Web
-              Apps (PWAs), and zero-trust backend infrastructure for businesses
-              that demand reliability and modern design.
-            </p>
+              <p class="hero-desc">
+                We build ultra-fast, resilient web applications, Progressive Web
+                Apps (PWAs), and zero-trust backend infrastructure for
+                businesses that demand reliability and modern design.
+              </p>
 
-            <div class="hero-actions">
-              <a href="#contact" class="btn-primary">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                >
-                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-                </svg>
-                Start a Project
-              </a>
-              <a href="#flagship" class="btn-secondary">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <polygon points="10 8 16 12 10 16 10 8" />
-                </svg>
-                View Flagship App
-              </a>
+              <div class="hero-actions">
+                <a href="#contact" class="btn-primary">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                  </svg>
+                  Start a Project
+                </a>
+                <a href="#flagship" class="btn-secondary">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polygon points="10 8 16 12 10 16 10 8" />
+                  </svg>
+                  View Flagship App
+                </a>
+              </div>
             </div>
 
             <div class="hero-stats">
@@ -1790,11 +1837,7 @@
     <footer>
       <div class="container">
         <div class="footer-content">
-          <div
-            class="brand-group"
-            onclick="document.getElementById('navLogoInput').click()"
-            title="Click to upload/change brand logo"
-          >
+          <div class="brand-group">
             <div class="logo-frame" style="width: 36px; height: 36px">
               <img
                 id="footerLogoImg"
@@ -1869,43 +1912,6 @@
         });
       }
 
-      // Brand Logo Sync & Upload Handler
-      const LOGO_KEY_PRIMARY = "kbl-brand-logo";
-
-      const loadBrandLogo = () => {
-        const storedLogo = localStorage.getItem(LOGO_KEY_PRIMARY);
-
-        [
-          { img: "headerLogoImg", fallback: "headerLogoFallback" },
-          { img: "footerLogoImg", fallback: "footerLogoFallback" },
-        ].forEach(({ img, fallback }) => {
-          const imgEl = document.getElementById(img);
-          const fallbackEl = document.getElementById(fallback);
-          if (!imgEl || !fallbackEl) return;
-
-          if (storedLogo) {
-            imgEl.src = storedLogo;
-          } else {
-            imgEl.src = "logo.png";
-          }
-          imgEl.style.display = "block";
-          fallbackEl.style.display = "none";
-        });
-      };
-
-      const handleLogoUpload = (event) => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const dataUrl = String(e.target.result || "");
-          localStorage.setItem(LOGO_KEY_PRIMARY, dataUrl);
-          loadBrandLogo();
-        };
-        reader.readAsDataURL(file);
-      };
-
       // Universal Form Inquiry Handler with PHP + Node Server Email Dispatch
       const handleInquirySubmit = async (event) => {
         event.preventDefault();
@@ -1923,29 +1929,23 @@
         if (submitBtn) submitBtn.disabled = true;
 
         const payload = { name, email, projectType: type, message: details };
-
-        // Endpoints: 1. HostGator PHP Mailer (send-inquiry.php) | 2. Node API (/api/inquiry)
-        const phpEndpoint = "send-inquiry.php";
-        const nodeEndpoint = window.location.origin.startsWith("http")
-          ? "/api/inquiry"
-          : "http://localhost:5000/api/inquiry";
+        const phpEndpoint = new URL("send-inquiry.php", window.location.href)
+          .href;
 
         try {
-          let response;
-          try {
-            // Attempt HostGator PHP mailer first
-            response = await fetch(phpEndpoint, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            });
-          } catch {
-            // Fallback to local Node server endpoint if PHP mailer isn't present
-            response = await fetch(nodeEndpoint, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            });
+          const response = await fetch(phpEndpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+          const contentType = response.headers.get("content-type") || "";
+          if (!contentType.includes("application/json")) {
+            throw new Error(
+              "The inquiry service is unavailable. Upload send-inquiry.php to the same public folder as this page.",
+            );
           }
 
           const data = await response.json();
@@ -1969,15 +1969,10 @@
             successEl.style.display = "block";
           }
         } catch (err) {
-          console.warn(
-            "Server email dispatch failed, launching email client fallback...",
-            err,
-          );
+          console.warn("Server email dispatch failed:", err);
           const subject = `New Project Inquiry: ${type} - ${name}`;
           const body = `Hi Shawn,\n\nName: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nProject Details:\n${details}\n\nSent via KBL Designers™`;
           const mailtoUrl = `mailto:skebel@kbldesigners.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-          window.location.href = mailtoUrl;
 
           const formEl = document.getElementById("inquiryForm");
           const successEl = document.getElementById("formSuccessMessage");
@@ -1985,10 +1980,10 @@
           if (successEl) {
             successEl.innerHTML = `
             <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-amber); margin-bottom: 8px;">
-              ⚡ Launching Email Client...
+              Unable to send automatically
             </div>
             <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 18px;">
-              To send your inquiry, hit Send in your email program or click the button below:
+              ${err.message} You can still send this prepared inquiry using your email app.
             </p>
             <a href="${mailtoUrl}" class="btn-primary" style="display: inline-flex; font-size: 0.85rem; padding: 10px 22px;">
               Click Here to Send Email
@@ -2002,8 +1997,6 @@
             submitText.innerText = "Send Inquiry to KBL Designers™";
         }
       };
-
-      loadBrandLogo();
     </script>
   </body>
 </html>
