@@ -1,0 +1,8 @@
+AddType image/webp .webp
+AddType application/manifest+json .webmanifest
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(webp|png|css|js|webmanifest)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>

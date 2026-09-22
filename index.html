@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
 
-        <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <!-- NAVIGATION HEADER -->
@@ -381,36 +381,60 @@
           </div>
 
           <div class="tikkit-proof-grid">
-            <figure class="tikkit-proof-shot featured">
-              <img
-                src="tikkit-dashboard.png"
-                alt="Tikkit admin performance dashboard with monthly volume and top performer panels"
-                loading="lazy"
-              />
+            <figure
+              class="tikkit-proof-shot featured"
+              tabindex="0"
+              role="button"
+              aria-label="Open operational dashboard screenshot"
+            >
+              <picture>
+                <source srcset="tikkit-dashboard.webp" type="image/webp" />
+                <img
+                  src="tikkit-dashboard.png"
+                  alt="Tikkit admin performance dashboard with monthly volume and top performer panels"
+                  loading="lazy"
+                />
+              </picture>
               <figcaption>
                 <strong>Operational dashboard</strong>
                 Performance reporting, role-aware navigation, and live business
                 visibility in one workspace.
               </figcaption>
             </figure>
-            <figure class="tikkit-proof-shot">
-              <img
-                src="tikkit-all-tikkits.png"
-                alt="Tikkit admin all tickets list with filters and pagination"
-                loading="lazy"
-              />
+            <figure
+              class="tikkit-proof-shot"
+              tabindex="0"
+              role="button"
+              aria-label="Open ticket operations screenshot"
+            >
+              <picture>
+                <source srcset="tikkit-all-tikkits.webp" type="image/webp" />
+                <img
+                  src="tikkit-all-tikkits.png"
+                  alt="Tikkit admin all tikkits list with filters and pagination"
+                  loading="lazy"
+                />
+              </picture>
               <figcaption>
                 <strong>Fast ticket operations</strong>
                 Search, filtering, pagination, and direct record actions built
                 for daily use.
               </figcaption>
             </figure>
-            <figure class="tikkit-proof-shot">
-              <img
-                src="tikkit-add-tikkit.png"
-                alt="Tikkit admin commission entry form with structured fields"
-                loading="lazy"
-              />
+            <figure
+              class="tikkit-proof-shot"
+              tabindex="0"
+              role="button"
+              aria-label="Open structured workflows screenshot"
+            >
+              <picture>
+                <source srcset="tikkit-add-tikkit.webp" type="image/webp" />
+                <img
+                  src="tikkit-add-tikkit.png"
+                  alt="Tikkit admin commission entry form with structured fields"
+                  loading="lazy"
+                />
+              </picture>
               <figcaption>
                 <strong>Structured workflows</strong>
                 Complex commission data made approachable through a guided,
@@ -421,6 +445,46 @@
         </div>
       </div>
     </section>
+
+    <div
+      class="tikkit-lightbox"
+      id="tikkitLightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="tikkitLightboxTitle"
+      aria-hidden="true"
+    >
+      <div class="tikkit-lightbox-panel">
+        <button
+          class="tikkit-lightbox-close"
+          type="button"
+          aria-label="Close screenshot viewer"
+        >
+          ×
+        </button>
+        <div class="tikkit-lightbox-bar">
+          <span class="tikkit-lightbox-title" id="tikkitLightboxTitle"
+            >Tikkit platform</span
+          >
+          <span id="tikkitLightboxCount">1 / 3</span>
+        </div>
+        <button
+          class="tikkit-lightbox-control tikkit-lightbox-prev"
+          type="button"
+          aria-label="Previous screenshot"
+        >
+          ‹
+        </button>
+        <img class="tikkit-lightbox-image" id="tikkitLightboxImage" alt="" />
+        <button
+          class="tikkit-lightbox-control tikkit-lightbox-next"
+          type="button"
+          aria-label="Next screenshot"
+        >
+          ›
+        </button>
+      </div>
+    </div>
 
     <!-- SERVICES SECTION -->
     <section id="services" class="section-padding">
@@ -856,6 +920,95 @@
             submitText.innerText = "Send Inquiry to KBL Designers™";
         }
       };
+
+      const proofImages = [
+        {
+          src: "tikkit-dashboard.webp",
+          alt: "Tikkit admin performance dashboard",
+          title: "Operational dashboard",
+        },
+        {
+          src: "tikkit-all-tikkits.webp",
+          alt: "Tikkit admin ticket operations list",
+          title: "Fast ticket operations",
+        },
+        {
+          src: "tikkit-add-tikkit.webp",
+          alt: "Tikkit admin structured commission entry form",
+          title: "Structured workflows",
+        },
+      ];
+      const lightbox = document.getElementById("tikkitLightbox");
+      const lightboxImage = document.getElementById("tikkitLightboxImage");
+      const lightboxTitle = document.getElementById("tikkitLightboxTitle");
+      const lightboxCount = document.getElementById("tikkitLightboxCount");
+      let activeProofIndex = 0;
+
+      const renderLightbox = () => {
+        const image = proofImages[activeProofIndex];
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxTitle.textContent = image.title;
+        lightboxCount.textContent = `${activeProofIndex + 1} / ${proofImages.length}`;
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      };
+
+      const openLightbox = (index) => {
+        activeProofIndex = index;
+        renderLightbox();
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        lightbox.querySelector(".tikkit-lightbox-close").focus();
+      };
+
+      document.querySelectorAll(".tikkit-proof-shot").forEach((shot, index) => {
+        shot.addEventListener("click", () => openLightbox(index));
+        shot.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openLightbox(index);
+          }
+        });
+      });
+
+      lightbox
+        .querySelector(".tikkit-lightbox-close")
+        .addEventListener("click", closeLightbox);
+      lightbox
+        .querySelector(".tikkit-lightbox-prev")
+        .addEventListener("click", () => {
+          activeProofIndex =
+            (activeProofIndex - 1 + proofImages.length) % proofImages.length;
+          renderLightbox();
+        });
+      lightbox
+        .querySelector(".tikkit-lightbox-next")
+        .addEventListener("click", () => {
+          activeProofIndex = (activeProofIndex + 1) % proofImages.length;
+          renderLightbox();
+        });
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (!lightbox.classList.contains("is-open")) return;
+        if (event.key === "Escape") closeLightbox();
+        if (event.key === "ArrowLeft") {
+          activeProofIndex =
+            (activeProofIndex - 1 + proofImages.length) % proofImages.length;
+          renderLightbox();
+        }
+        if (event.key === "ArrowRight") {
+          activeProofIndex = (activeProofIndex + 1) % proofImages.length;
+          renderLightbox();
+        }
+      });
 
       if (window.gsap) {
         const proofShots = gsap.utils.toArray(".tikkit-proof-shot");
