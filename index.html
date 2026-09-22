@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260922" />
   </head>
   <body>
     <!-- NAVIGATION HEADER -->
@@ -449,12 +449,35 @@
     <div
       class="tikkit-lightbox"
       id="tikkitLightbox"
+      style="
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: none;
+        place-items: center;
+        padding: 24px;
+        background: rgba(3, 6, 12, 0.78);
+        backdrop-filter: blur(18px) saturate(125%);
+      "
       role="dialog"
       aria-modal="true"
       aria-labelledby="tikkitLightboxTitle"
       aria-hidden="true"
     >
-      <div class="tikkit-lightbox-panel">
+      <div
+        class="tikkit-lightbox-panel"
+        style="
+          position: relative;
+          width: min(1100px, 100%);
+          max-height: calc(100vh - 48px);
+          padding: 14px;
+          overflow: visible;
+          background: rgba(13, 20, 33, 0.86);
+          border: 1px solid rgba(125, 211, 252, 0.58);
+          border-radius: 12px;
+          box-shadow: 0 30px 90px rgba(0, 0, 0, 0.65);
+        "
+      >
         <button
           class="tikkit-lightbox-close"
           type="button"
@@ -466,7 +489,13 @@
           <span class="tikkit-lightbox-title" id="tikkitLightboxTitle"
             >Tikkit platform</span
           >
-          <span id="tikkitLightboxCount">1 / 3</span>
+          <span id="tikkitLightboxDescription"></span>
+          <span
+            class="tikkit-lightbox-count"
+            id="tikkitLightboxCount"
+            aria-live="polite"
+            >1 / 3</span
+          >
         </div>
         <button
           class="tikkit-lightbox-control tikkit-lightbox-prev"
@@ -926,16 +955,22 @@
           src: "tikkit-dashboard.webp",
           alt: "Tikkit admin performance dashboard",
           title: "Operational dashboard",
+          description:
+            "Performance reporting, role-aware navigation, and live business visibility in one workspace.",
         },
         {
           src: "tikkit-all-tikkits.webp",
           alt: "Tikkit admin ticket operations list",
           title: "Fast ticket operations",
+          description:
+            "Search, filtering, pagination, and direct record actions built for daily use.",
         },
         {
           src: "tikkit-add-tikkit.webp",
           alt: "Tikkit admin structured commission entry form",
           title: "Structured workflows",
+          description:
+            "Complex commission data made approachable through a guided, responsive entry experience.",
         },
       ];
       const lightbox = document.getElementById("tikkitLightbox");
@@ -949,18 +984,28 @@
         lightboxImage.src = image.src;
         lightboxImage.alt = image.alt;
         lightboxTitle.textContent = image.title;
+        document.getElementById("tikkitLightboxDescription").textContent =
+          image.description;
         lightboxCount.textContent = `${activeProofIndex + 1} / ${proofImages.length}`;
       };
 
       const closeLightbox = () => {
         lightbox.classList.remove("is-open");
         lightbox.setAttribute("aria-hidden", "true");
+        lightbox.style.display = "none";
+        lightbox.style.opacity = "0";
+        lightbox.style.visibility = "hidden";
+        lightbox.style.pointerEvents = "none";
         document.body.style.overflow = "";
       };
 
       const openLightbox = (index) => {
         activeProofIndex = index;
         renderLightbox();
+        lightbox.style.display = "grid";
+        lightbox.style.opacity = "1";
+        lightbox.style.visibility = "visible";
+        lightbox.style.pointerEvents = "auto";
         lightbox.classList.add("is-open");
         lightbox.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
