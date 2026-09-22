@@ -1,0 +1,17 @@
+{
+  "name": "KBL Designers",
+  "short_name": "KBL Designers",
+  "description": "Web architecture and engineering by KBL Designers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07090e",
+  "theme_color": "#07090e",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "350x350",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

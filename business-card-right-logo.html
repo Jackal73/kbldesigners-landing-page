@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="logo.png" />
     <title>KBL Designers™ - Right Logo Business Card Edition</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -77,8 +78,10 @@
       }
 
       .controls {
+        width: 100%;
+        max-width: 916px;
         margin-bottom: 28px;
-        text-align: center;
+        text-align: left;
       }
 
       .controls h1 {
@@ -101,7 +104,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        justify-content: center;
+        justify-content: flex-start;
         margin-top: 14px;
       }
 
@@ -349,6 +352,9 @@
         font-size: 0.6rem;
         font-weight: 600;
         color: var(--text-muted);
+        min-width: 0;
+        white-space: nowrap;
+        text-align: center;
       }
 
       .contact-grid {
@@ -581,27 +587,13 @@
     </style>
   </head>
   <body>
-    <!-- HEADER CONTROLS -->
     <div class="controls">
-      <h1>KBL Designers™ Web Engineering Card</h1>
-      <p>Interactive 3D Preview • Ready to Share or Save</p>
-
       <div class="btn-group">
-        <button class="action-btn" onclick="window.print()">
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path
-              d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"
-            />
-            <rect x="6" y="14" width="12" height="8" />
-          </svg>
-          Print / Save as PDF
+        <button class="action-btn" type="button" onclick="window.print()">
+          Print / Save PDF
+        </button>
+        <button class="action-btn" type="button" onclick="downloadContact()">
+          Save Contact
         </button>
       </div>
     </div>
@@ -612,7 +604,7 @@
       <div class="card-wrapper" id="cardFront">
         <div class="card">
           <div class="card-content">
-            <!-- BRAND TOP ROW (KBL DESIGNERS TITLE & AVAILABLE BADGE) -->
+            <!-- BRAND TOP ROW (KBL DESIGNERS TITLE & PROJECT STATUS) -->
             <div class="brand-header">
               <div>
                 <div class="brand-name">
@@ -623,7 +615,7 @@
 
               <div class="status-badge">
                 <span class="status-dot"></span>
-                Available
+                Select Projects
               </div>
             </div>
 
@@ -652,10 +644,10 @@
 
               <div class="tech-chips">
                 <span class="chip">MERN Stack</span>
-                <span class="chip">React 19</span>
-                <span class="chip">Next.js 15</span>
+                <span class="chip">React v19</span>
+                <span class="chip">Next.js v15</span>
                 <span class="chip">PWA</span>
-                <span class="chip">Cloud Security</span>
+                <span class="chip">API Architecture</span>
               </div>
             </div>
 
@@ -740,6 +732,27 @@
 
     <!-- SCRIPT FOR BRAND LOGO STORAGE & 3D TILT EFFECT -->
     <script>
+      const downloadContact = () => {
+        const contact = [
+          "BEGIN:VCARD",
+          "VERSION:3.0",
+          "N:Kebel;Shawn;;;",
+          "FN:Shawn Kebel",
+          "ORG:KBL Designers",
+          "TITLE:Lead Development Engineer",
+          "URL:https://kbldesigners.com",
+          "EMAIL;TYPE=INTERNET:skebel@kbldesigners.com",
+          "NOTE:Web architecture and engineering; open to select projects.",
+          "END:VCARD",
+        ].join("\\r\\n");
+        const blob = new Blob([contact], { type: "text/vcard;charset=utf-8" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "Shawn-Kebel-KBL-Designers.vcf";
+        link.click();
+        URL.revokeObjectURL(link.href);
+      };
+
       const LOGO_KEY_PRIMARY = "kbl-brand-logo";
 
       const loadBrandLogo = () => {
