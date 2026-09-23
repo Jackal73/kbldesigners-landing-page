@@ -592,9 +592,7 @@
         <button class="action-btn" type="button" onclick="window.print()">
           Print / Save PDF
         </button>
-        <button class="action-btn" type="button" onclick="downloadContact()">
-          Save Contact
-        </button>
+        <a class="action-btn" href="shawn-kebel.vcf" download> Save Contact </a>
       </div>
     </div>
 
@@ -732,27 +730,6 @@
 
     <!-- SCRIPT FOR BRAND LOGO STORAGE & 3D TILT EFFECT -->
     <script>
-      const downloadContact = () => {
-        const contact = [
-          "BEGIN:VCARD",
-          "VERSION:3.0",
-          "N:Kebel;Shawn;;;",
-          "FN:Shawn Kebel",
-          "ORG:KBL Designers",
-          "TITLE:Lead Development Engineer",
-          "URL:https://kbldesigners.com",
-          "EMAIL;TYPE=INTERNET:skebel@kbldesigners.com",
-          "NOTE:Web architecture and engineering; open to select projects.",
-          "END:VCARD",
-        ].join("\\r\\n");
-        const blob = new Blob([contact], { type: "text/vcard;charset=utf-8" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "Shawn-Kebel-KBL-Designers.vcf";
-        link.click();
-        URL.revokeObjectURL(link.href);
-      };
-
       const LOGO_KEY_PRIMARY = "kbl-brand-logo";
 
       const loadBrandLogo = () => {

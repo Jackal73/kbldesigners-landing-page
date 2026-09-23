@@ -3,9 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-site-verification"
+      content="3cGOAR_Dv1PdxHjsjMmguwlrUYj79rcC7BlZxeJdXAc"
+    />
+    <meta
+      name="description"
+      content="KBL Designers builds modern web applications, progressive web apps, APIs, and secure backend systems for growing businesses."
+    />
+    <link rel="canonical" href="https://kbldesigners.com/" />
     <link rel="icon" type="image/png" href="logo.png" />
     <link rel="apple-touch-icon" href="logo.png" />
     <link rel="manifest" href="site.webmanifest" />
+    <meta
+      property="og:title"
+      content="KBL Designers | Web Architecture & Engineering"
+    />
+    <meta
+      property="og:description"
+      content="Modern web applications, progressive web apps, APIs, and secure backend systems."
+    />
+    <meta property="og:url" content="https://kbldesigners.com/" />
+    <meta property="og:image" content="https://kbldesigners.com/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
     <title>KBL Designers™ | Next-Gen Web Architecture & Development</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -387,14 +408,11 @@
               role="button"
               aria-label="Open operational dashboard screenshot"
             >
-              <picture>
-                <source srcset="tikkit-dashboard.webp" type="image/webp" />
-                <img
-                  src="tikkit-dashboard.png"
-                  alt="Tikkit admin performance dashboard with monthly volume and top performer panels"
-                  loading="lazy"
-                />
-              </picture>
+              <img
+                src="tikkit-dashboard.webp"
+                alt="Tikkit admin performance dashboard with monthly volume and top performer panels"
+                loading="lazy"
+              />
               <figcaption>
                 <strong>Operational dashboard</strong>
                 Performance reporting, role-aware navigation, and live business
@@ -407,14 +425,11 @@
               role="button"
               aria-label="Open ticket operations screenshot"
             >
-              <picture>
-                <source srcset="tikkit-all-tikkits.webp" type="image/webp" />
-                <img
-                  src="tikkit-all-tikkits.png"
-                  alt="Tikkit admin all tikkits list with filters and pagination"
-                  loading="lazy"
-                />
-              </picture>
+              <img
+                src="tikkit-all-tikkits.webp"
+                alt="Tikkit admin all tikkits list with filters and pagination"
+                loading="lazy"
+              />
               <figcaption>
                 <strong>Fast ticket operations</strong>
                 Search, filtering, pagination, and direct record actions built
@@ -427,14 +442,11 @@
               role="button"
               aria-label="Open structured workflows screenshot"
             >
-              <picture>
-                <source srcset="tikkit-add-tikkit.webp" type="image/webp" />
-                <img
-                  src="tikkit-add-tikkit.png"
-                  alt="Tikkit admin commission entry form with structured fields"
-                  loading="lazy"
-                />
-              </picture>
+              <img
+                src="tikkit-add-tikkit.webp"
+                alt="Tikkit admin commission entry form with structured fields"
+                loading="lazy"
+              />
               <figcaption>
                 <strong>Structured workflows</strong>
                 Complex commission data made approachable through a guided,
@@ -755,6 +767,26 @@
                 ></textarea>
               </div>
 
+              <div
+                aria-hidden="true"
+                style="
+                  position: absolute;
+                  left: -10000px;
+                  width: 1px;
+                  height: 1px;
+                  overflow: hidden;
+                "
+              >
+                <label for="companyWebsite">Company website</label>
+                <input
+                  type="text"
+                  id="companyWebsite"
+                  name="website"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+
               <div class="form-group full" style="margin-top: 10px">
                 <button
                   type="submit"
@@ -875,7 +907,7 @@
               letter-spacing: 0.08em;
             "
           >
-            KBL Designers™ • Web Architecture & Engineering
+            Web Architecture & Engineering
           </div>
         </div>
       </div>
@@ -908,14 +940,20 @@
       }
 
       // Universal Form Inquiry Handler with PHP + Node Server Email Dispatch
+      const inquiryStartedAt = Date.now();
+      let inquirySubmissionInFlight = false;
+
       const handleInquirySubmit = async (event) => {
         event.preventDefault();
+
+        if (inquirySubmissionInFlight) return;
 
         const name = document.getElementById("clientName").value.trim();
 
         const email = document.getElementById("clientEmail").value.trim();
         const type = document.getElementById("projectType").value;
         const details = document.getElementById("projectDetails").value.trim();
+        const website = document.getElementById("companyWebsite").value.trim();
 
         if (!name || !email || !type || !details) return;
 
@@ -924,7 +962,15 @@
         if (submitText) submitText.innerText = "Sending Email...";
         if (submitBtn) submitBtn.disabled = true;
 
-        const payload = { name, email, projectType: type, message: details };
+        inquirySubmissionInFlight = true;
+        const payload = {
+          name,
+          email,
+          projectType: type,
+          message: details,
+          website,
+          startedAt: inquiryStartedAt,
+        };
         const phpEndpoint = new URL("send-inquiry.php", window.location.href)
           .href;
 
@@ -988,6 +1034,7 @@
             successEl.style.display = "block";
           }
         } finally {
+          inquirySubmissionInFlight = false;
           if (submitBtn) submitBtn.disabled = false;
           if (submitText)
             submitText.innerText = "Send Inquiry to KBL Designers™";

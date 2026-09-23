@@ -1,5 +1,6 @@
 AddType image/webp .webp
 AddType application/manifest+json .webmanifest
+AddType text/vcard .vcf
 
 <IfModule mod_headers.c>
   <FilesMatch "\.(webp|png|css|js|webmanifest)$">
