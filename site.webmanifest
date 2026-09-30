@@ -2,6 +2,7 @@
   "name": "KBL Designers",
   "short_name": "KBL Designers",
   "description": "Web architecture and engineering by KBL Designers.",
+  "id": "/",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#07090e",
