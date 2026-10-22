@@ -1000,14 +1000,24 @@
           const successEl = document.getElementById("formSuccessMessage");
           if (formEl) formEl.style.display = "none";
           if (successEl) {
-            successEl.innerHTML = `
-            <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-emerald); margin-bottom: 8px;">
-              ✓ Inquiry Delivered!
-            </div>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px;">
-              Thank you for reaching out, ${name}. Your project inquiry was delivered directly to <strong style="color: var(--accent-cyan);">skebel@kbldesigners.com</strong>.
-            </p>
-          `;
+            successEl.replaceChildren();
+            const heading = document.createElement("div");
+            heading.style.cssText =
+              "font-size: 1.4rem; font-weight: 800; color: var(--accent-emerald); margin-bottom: 8px;";
+            heading.textContent = "✓ Inquiry Delivered!";
+
+            const message = document.createElement("p");
+            message.style.cssText =
+              "color: var(--text-muted); font-size: 0.95rem; margin-bottom: 12px;";
+            message.append("Thank you for reaching out, ");
+            message.append(document.createTextNode(name));
+            message.append(". Your project inquiry was delivered directly to ");
+            const recipient = document.createElement("strong");
+            recipient.style.color = "var(--accent-cyan)";
+            recipient.textContent = "skebel@kbldesigners.com";
+            message.append(recipient, ".");
+
+            successEl.append(heading, message);
             successEl.style.display = "block";
           }
         } catch (err) {
@@ -1020,17 +1030,28 @@
           const successEl = document.getElementById("formSuccessMessage");
           if (formEl) formEl.style.display = "none";
           if (successEl) {
-            successEl.innerHTML = `
-            <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-amber); margin-bottom: 8px;">
-              Unable to send automatically
-            </div>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 18px;">
-              ${err.message} You can still send this prepared inquiry using your email app.
-            </p>
-            <a href="${mailtoUrl}" class="btn-primary" style="display: inline-flex; font-size: 0.85rem; padding: 10px 22px;">
-              Click Here to Send Email
-            </a>
-          `;
+            successEl.replaceChildren();
+            const heading = document.createElement("div");
+            heading.style.cssText =
+              "font-size: 1.4rem; font-weight: 800; color: var(--accent-amber); margin-bottom: 8px;";
+            heading.textContent = "Unable to send automatically";
+
+            const message = document.createElement("p");
+            message.style.cssText =
+              "color: var(--text-muted); font-size: 0.95rem; margin-bottom: 18px;";
+            message.append(document.createTextNode(err.message));
+            message.append(
+              " You can still send this prepared inquiry using your email app.",
+            );
+
+            const mailLink = document.createElement("a");
+            mailLink.href = mailtoUrl;
+            mailLink.className = "btn-primary";
+            mailLink.style.cssText =
+              "display: inline-flex; font-size: 0.85rem; padding: 10px 22px;";
+            mailLink.textContent = "Click Here to Send Email";
+
+            successEl.append(heading, message, mailLink);
             successEl.style.display = "block";
           }
         } finally {
