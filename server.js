@@ -6,6 +6,17 @@ const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const escapeHtml = (value) =>
+  String(value).replace(/[&<>"']/g, (character) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+    return entities[character];
+  });
 
 app.use(cors());
 app.use(express.json());
@@ -49,35 +60,34 @@ app.post("/api/inquiry", async (req, res) => {
   }
 
   const receiver = process.env.RECEIVER_EMAIL || "skebel@kbldesigners.com";
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safeProjectType = escapeHtml(projectType);
+  const safeMessage = escapeHtml(message);
 
   const mailOptions = {
-    from: `"KBL Designers™ Inquiry" <${process.env.SMTP_USER || "shawnkebel@taptae.org"}>`,
+    from: `"KBL Designers Website" <${process.env.SMTP_USER || "shawnkebel@taptae.org"}>`,
     replyTo: email,
     to: receiver,
     subject: `🚀 New Project Inquiry: ${projectType} from ${name}`,
+    text: `${email}\n\n${message}\n\nClient: ${name}\nProject focus: ${projectType}\n\nSent from kbldesigners.com`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #0d1421; color: #f8fafc; border-radius: 12px; border: 1px solid #38bdf8;">
         <h2 style="color: #38bdf8; margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
           New Project Inquiry - KBL Designers™
         </h2>
+        <div style="color: #38bdf8; font-size: 14px; font-weight: bold; margin-bottom: 10px;">${safeEmail}</div>
+        <div style="margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); color: #f8fafc; white-space: pre-wrap; font-size: 14px; line-height: 1.6;">${safeMessage}</div>
         <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
           <tr>
             <td style="padding: 8px 0; color: #94a3b8; font-weight: bold; width: 130px;">Client Name:</td>
-            <td style="padding: 8px 0; color: #ffffff;">${name}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px 0; color: #94a3b8; font-weight: bold;">Client Email:</td>
-            <td style="padding: 8px 0; color: #38bdf8;"><a href="mailto:${email}" style="color: #38bdf8;">${email}</a></td>
+            <td style="padding: 8px 0; color: #ffffff;">${safeName}</td>
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #94a3b8; font-weight: bold;">Project Focus:</td>
-            <td style="padding: 8px 0; color: #10b981; font-weight: bold;">${projectType}</td>
+            <td style="padding: 8px 0; color: #10b981; font-weight: bold;">${safeProjectType}</td>
           </tr>
         </table>
-        <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
-          <div style="color: #94a3b8; font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 8px;">Project Details & Requirements:</div>
-          <div style="color: #f8fafc; white-space: pre-wrap; font-size: 14px; line-height: 1.6;">${message}</div>
-        </div>
         <div style="margin-top: 20px; font-size: 11px; color: #64748b; text-align: center;">
           Sent from KBL Designers™ Landing Page Engine
         </div>
