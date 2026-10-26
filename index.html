@@ -396,27 +396,27 @@
               <h3 class="tikkit-proof-title">Inside the Tikkit platform</h3>
             </div>
             <p class="tikkit-proof-note">
-              ** Real product surfaces from a production-minded admin workflow,
-              not a static concept screen.
+              ** Real product surfaces from a production admin workflow, not a
+              static concept screen.
             </p>
           </div>
 
           <div class="tikkit-proof-grid">
             <figure
-              class="tikkit-proof-shot featured"
+              class="tikkit-proof-shot"
               tabindex="0"
               role="button"
               aria-label="Open operational dashboard screenshot"
             >
               <img
-                src="tikkit-dashboard.webp"
-                alt="Tikkit admin performance dashboard with monthly volume and top performer panels"
+                src="tikkit-light-dashboard.png"
+                alt="Tikkit admin performance dashboard in light mode with monthly volume and top performer panels"
                 loading="lazy"
               />
               <figcaption>
-                <strong>Operational dashboard</strong>
+                <strong>Operational dashboard · Light mode</strong>
                 Performance reporting, role-aware navigation, and live business
-                visibility in one workspace.
+                visibility in one workspace, shown in "light" mode.
               </figcaption>
             </figure>
             <figure
@@ -451,6 +451,23 @@
                 <strong>Structured workflows</strong>
                 Complex commission data made approachable through a guided,
                 responsive entry experience.
+              </figcaption>
+            </figure>
+            <figure
+              class="tikkit-proof-shot"
+              tabindex="0"
+              role="button"
+              aria-label="Open profile page screenshot in light mode"
+            >
+              <img
+                src="tikkit-light-profile.png"
+                alt="Tikkit admin profile page in light mode with account identity, appearance settings, and dashboard photo controls"
+                loading="lazy"
+              />
+              <figcaption>
+                <strong>Personalized account controls · Light mode</strong>
+                Account identity, appearance preferences, and dashboard photo
+                controls in the light interface.
               </figcaption>
             </figure>
           </div>
@@ -506,7 +523,7 @@
             class="tikkit-lightbox-count"
             id="tikkitLightboxCount"
             aria-live="polite"
-            >1 / 3</span
+            >1 / 4</span
           >
         </div>
         <button
@@ -606,6 +623,32 @@
             </p>
             <div class="service-hover-info">
               <span>Sessions → headers → rate limits → audit surface</span>
+            </div>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card" tabindex="0">
+            <div class="service-icon-box">
+              <svg
+                class="service-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2"
+              >
+                <circle cx="5" cy="6" r="2" />
+                <circle cx="19" cy="18" r="2" />
+                <path d="M7 6h5a4 4 0 0 1 4 4v4a4 4 0 0 0 4 4" />
+                <path d="m17 16 2 2-2 2" />
+              </svg>
+            </div>
+            <h3 class="service-title">Workflow Automation</h3>
+            <p class="service-desc">
+              Turn repetitive handoffs into dependable digital workflows, so
+              your team can move work forward with fewer delays and clearer
+              visibility.
+            </p>
+            <div class="service-hover-info">
+              <span>Trigger → business rules → approvals → clear outcomes</span>
             </div>
           </div>
         </div>
@@ -1064,11 +1107,11 @@
 
       const proofImages = [
         {
-          src: "tikkit-dashboard.webp",
-          alt: "Tikkit admin performance dashboard",
-          title: "Operational dashboard",
+          src: "tikkit-light-dashboard.png",
+          alt: "Tikkit admin performance dashboard in light mode",
+          title: "Operational dashboard · Light mode",
           description:
-            "Performance reporting, role-aware navigation, and live business visibility in one workspace.",
+            "Performance reporting, role-aware navigation, and live business visibility in one workspace, shown in light mode.",
         },
         {
           src: "tikkit-all-tikkits.webp",
@@ -1083,6 +1126,13 @@
           title: "Structured workflows",
           description:
             "Complex commission data made approachable through a guided, responsive entry experience.",
+        },
+        {
+          src: "tikkit-light-profile.png",
+          alt: "Tikkit admin profile page in light mode with account identity and appearance settings",
+          title: "Personalized account controls · Light mode",
+          description:
+            "Account identity, appearance preferences, and dashboard photo controls in the light interface.",
         },
       ];
       const lightbox = document.getElementById("tikkitLightbox");

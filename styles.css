@@ -639,7 +639,7 @@ header {
 
 .tikkit-proof-grid {
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   perspective: 1200px;
 }
@@ -655,7 +655,6 @@ header {
 }
 
 .tikkit-proof-shot.featured {
-  grid-row: span 2;
   display: flex;
   flex-direction: column;
 }
@@ -843,7 +842,7 @@ header {
 /* SERVICES GRID */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 28px;
 }
 
