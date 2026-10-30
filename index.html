@@ -39,7 +39,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="styles.css?v=20260923" />
+    <link rel="stylesheet" href="styles.css?v=20261028-hero-button-depth" />
   </head>
   <body>
     <!-- NAVIGATION HEADER -->
@@ -80,7 +80,7 @@
 
           <a
             href="#contact"
-            class="btn-primary"
+            class="btn-primary btn-press-depth"
             style="padding: 10px 20px; font-size: 0.85rem"
           >
             Get In Touch
@@ -114,7 +114,7 @@
               </p>
 
               <div class="hero-actions">
-                <a href="#contact" class="btn-primary">
+                <a href="#contact" class="btn-primary btn-press-depth-neutral">
                   <svg
                     width="18"
                     height="18"
@@ -127,7 +127,10 @@
                   </svg>
                   Start a Project
                 </a>
-                <a href="#flagship" class="btn-secondary">
+                <a
+                  href="#flagship"
+                  class="btn-secondary btn-press-depth-neutral"
+                >
                   <svg
                     width="18"
                     height="18"
@@ -310,7 +313,11 @@
                 </div>
               </div>
 
-              <a href="business-card.html" target="_blank" class="btn-primary">
+              <a
+                href="business-card.html"
+                target="_blank"
+                class="btn-primary btn-press-depth"
+              >
                 View Digital Engineering Card
               </a>
             </div>
@@ -409,7 +416,7 @@
               aria-label="Open operational dashboard screenshot"
             >
               <img
-                src="tikkit-light-dashboard.png"
+                src="tikkit-light-dashboard.webp"
                 alt="Tikkit admin performance dashboard in light mode with monthly volume and top performer panels"
                 loading="lazy"
               />
@@ -460,7 +467,7 @@
               aria-label="Open profile page screenshot in light mode"
             >
               <img
-                src="tikkit-light-profile.png"
+                src="tikkit-light-profile.webp"
                 alt="Tikkit admin profile page in light mode with account identity, appearance settings, and dashboard photo controls"
                 loading="lazy"
               />
@@ -559,6 +566,15 @@
         <div class="services-grid">
           <!-- Service 1 -->
           <div class="service-card" tabindex="0">
+            <div class="service-media">
+              <img
+                src="assets/services/full-stack.jpg"
+                alt="Development workstation with application code open on a laptop"
+                loading="lazy"
+                width="900"
+                height="599"
+              />
+            </div>
             <div class="service-icon-box">
               <svg
                 class="service-icon"
@@ -583,6 +599,15 @@
 
           <!-- Service 2 -->
           <div class="service-card" tabindex="0">
+            <div class="service-media">
+              <img
+                src="assets/services/enterprise-pwa.jpg"
+                alt="Smartphone apps beside a laptop, representing connected mobile and desktop experiences"
+                loading="lazy"
+                width="900"
+                height="900"
+              />
+            </div>
             <div class="service-icon-box">
               <svg
                 class="service-icon"
@@ -606,6 +631,15 @@
 
           <!-- Service 3 -->
           <div class="service-card" tabindex="0">
+            <div class="service-media">
+              <img
+                src="assets/services/security.jpg"
+                alt="Illuminated circuit pathways representing layered digital infrastructure"
+                loading="lazy"
+                width="900"
+                height="601"
+              />
+            </div>
             <div class="service-icon-box">
               <svg
                 class="service-icon"
@@ -628,6 +662,15 @@
 
           <!-- Service 4 -->
           <div class="service-card" tabindex="0">
+            <div class="service-media">
+              <img
+                src="assets/services/automation.jpg"
+                alt="Interactive robot with a tablet, representing automated assistance"
+                loading="lazy"
+                width="900"
+                height="600"
+              />
+            </div>
             <div class="service-icon-box">
               <svg
                 class="service-icon"
@@ -652,6 +695,42 @@
             </div>
           </div>
         </div>
+        <details class="service-photo-credits">
+          <summary>Photo credits</summary>
+          <p>
+            Photography from
+            <a
+              href="https://unsplash.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Unsplash</a
+            >. Original images:
+            <a
+              href="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Development workstation</a
+            >,
+            <a
+              href="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Mobile workspace</a
+            >,
+            <a
+              href="https://images.unsplash.com/photo-1550751827-4bd374c3f58b"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Digital circuitry</a
+            >,
+            <a
+              href="https://images.unsplash.com/photo-1485827404703-89b55fcc595e"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Interactive robot</a
+            >.
+          </p>
+        </details>
       </div>
     </section>
 
@@ -680,6 +759,13 @@
             >
           </div>
           <div class="stack-chip">React 19</div>
+          <div class="stack-chip stack-chip-info" tabindex="0">
+            Redux Toolkit
+            <span class="stack-chip-tooltip" style="display: none"
+              >Predictable application state and asynchronous data workflows
+              shared across the interface.</span
+            >
+          </div>
           <div class="stack-chip">Next.js 15</div>
           <div class="stack-chip">Node.js Runtime</div>
           <div class="stack-chip stack-chip-info" tabindex="0">
@@ -834,7 +920,7 @@
                 <button
                   type="submit"
                   id="submitInquiryBtn"
-                  class="btn-primary"
+                  class="btn-primary btn-press-depth"
                   style="width: 100%; justify-content: center"
                 >
                   <svg
@@ -1107,7 +1193,7 @@
 
       const proofImages = [
         {
-          src: "tikkit-light-dashboard.png",
+          src: "tikkit-light-dashboard.webp",
           alt: "Tikkit admin performance dashboard in light mode",
           title: "Operational dashboard · Light mode",
           description:
@@ -1128,7 +1214,7 @@
             "Complex commission data made approachable through a guided, responsive entry experience.",
         },
         {
-          src: "tikkit-light-profile.png",
+          src: "tikkit-light-profile.webp",
           alt: "Tikkit admin profile page in light mode with account identity and appearance settings",
           title: "Personalized account controls · Light mode",
           description:

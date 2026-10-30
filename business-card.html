@@ -138,13 +138,14 @@
         gap: 36px;
         justify-content: center;
         perspective: 1200px;
-        max-width: 1000px;
+        max-width: 916px;
         width: 100%;
       }
 
       .card-wrapper {
         position: relative;
         width: 440px;
+        max-width: 100%;
         height: 250px;
         border-radius: var(--card-radius);
         transition:
@@ -489,15 +490,31 @@
         margin-top: 4px;
       }
 
+      @media screen and (max-width: 955px) {
+        .controls,
+        .cards-deck {
+          max-width: 440px;
+        }
+      }
+
       @page {
-        size: auto;
-        margin: 0.25in;
+        size: portrait;
+        margin: 0.75in 0.25in 0.25in;
       }
 
       @media print {
+        *,
+        *::before,
+        *::after {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
         body {
           background: #ffffff !important;
           padding: 0 !important;
+          min-height: 0 !important;
+          display: block !important;
         }
 
         .controls {
@@ -505,20 +522,40 @@
         }
 
         .cards-deck {
-          display: block !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          gap: 0.25in !important;
+          width: 100% !important;
+          margin: 0 auto !important;
+          perspective: none !important;
+          break-inside: avoid !important;
+          page-break-inside: avoid !important;
         }
 
         .card-wrapper {
-          page-break-after: always;
+          page-break-after: auto;
           page-break-inside: avoid;
+          break-after: auto;
+          break-inside: avoid;
+          flex-shrink: 0;
           width: 3.5in !important;
           height: 2in !important;
-          margin: 0.2in auto !important;
+          margin: 0 !important;
           transform: none !important;
         }
 
         .card {
+          box-sizing: border-box !important;
+          width: 3.5in !important;
+          height: 2in !important;
+          min-width: 3.5in !important;
+          max-width: 3.5in !important;
+          min-height: 2in !important;
+          max-height: 2in !important;
           background: #0d1421 !important;
+          -webkit-backdrop-filter: none !important;
+          backdrop-filter: none !important;
           -webkit-print-color-adjust: exact !important;
           print-color-adjust: exact !important;
           border: 1px solid #1e293b !important;
