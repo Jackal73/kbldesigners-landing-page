@@ -1035,8 +1035,14 @@ header {
 
 .service-desc {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: #cbd5e1;
   line-height: 1.6;
+  transition: color 0.22s ease;
+}
+
+.service-card:hover .service-desc,
+.service-card:focus-visible .service-desc {
+  color: var(--text-muted);
 }
 
 .service-hover-info {
